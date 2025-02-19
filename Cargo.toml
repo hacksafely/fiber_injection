@@ -1,0 +1,22 @@
+[package]
+name = "fiber_injection"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ntapi = { version = "0.4", features = ["impl-default"] }
+
+[dependencies.windows]
+version = "0.59"
+features = [
+    "Win32_Foundation",
+    "Win32_System_Memory",
+    "Win32_System_Threading",
+    "Wdk_Storage_FileSystem",
+]
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"
+codegen-units = 1
+panic = "abort"
+lto = true
